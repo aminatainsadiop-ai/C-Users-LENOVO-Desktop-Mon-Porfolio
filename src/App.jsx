@@ -1,14 +1,14 @@
-import { Navbar } from './components/Navbar'
-import { Footer } from './components/Footer'
+import { Navbar } from './sections/Navbar'
 import { Hero } from './sections/Hero'
 import { About } from './sections/About'
 import { Skills } from './sections/Skills'
 import { Projects } from './sections/Projects'
-import { Journey } from './sections/Journey'
+import { Parcours } from './sections/Parcours'
 import { Services } from './sections/Services'
 import { Contact } from './sections/Contact'
+import { Footer } from './sections/Footer'
 
-function App() {
+export default function App() {
   return (
     <div className="flex min-h-screen flex-col">
       <a
@@ -17,22 +17,17 @@ function App() {
       >
         Aller au contenu principal
       </a>
-
       <Navbar />
-
       <main id="contenu" className="flex-1">
         <Hero />
         <About />
         <Skills />
         <Projects />
-        <Journey />
+        <Parcours />
         <Services />
         <Contact />
       </main>
-
       <Footer />
     </div>
   )
 }
-
-export default App
