@@ -48,7 +48,7 @@ export const projects = [
     icon: 'user',
     image: '',
     demo: '',
-    github: '',
+    github: 'https://github.com/aminatainsadiop-ai/C-Users-LENOVO-Desktop-Mon-Porfolio',
   },
   {
     id: 'cloudsim',

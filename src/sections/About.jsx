@@ -3,7 +3,7 @@ import { profile } from '../data/profile'
 import { SectionTitle } from '../components/SectionTitle'
 import { Reveal } from '../components/Reveal'
 
-const icons = {
+const iconMap = {
   graduation: GraduationCap,
   laptop: Laptop,
   users: Users,
@@ -34,7 +34,7 @@ export function About() {
           <Reveal delay={120}>
             <ul className="grid gap-4">
               {profile.about.highlights.map((highlight) => {
-                const Icon = icons[highlight.icon] ?? Laptop
+                const Icon = iconMap[highlight.icon] ?? Laptop
                 return (
                   <li
                     key={highlight.label}

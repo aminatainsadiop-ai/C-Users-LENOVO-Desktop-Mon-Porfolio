@@ -1,9 +1,39 @@
 import { GraduationCap, LayoutTemplate, Monitor, Palette } from 'lucide-react'
-import { services } from '../data/services'
 import { SectionTitle } from '../components/SectionTitle'
 import { Reveal } from '../components/Reveal'
 
-const icons = {
+const services = [
+  {
+    id: 'sites-web',
+    icon: 'monitor',
+    title: 'Développement de sites web',
+    description:
+      "Création de sites vitrines et d'applications web avec HTML, CSS, JavaScript et React, du design à la mise en ligne.",
+  },
+  {
+    id: 'interfaces',
+    icon: 'layout',
+    title: "Création d'interfaces utilisateur",
+    description:
+      "Conception d'interfaces claires, responsives et accessibles, centrées sur l'expérience de l'utilisateur.",
+  },
+  {
+    id: 'formation',
+    icon: 'graduation',
+    title: 'Initiation et formation en informatique',
+    description:
+      'Accompagnement des débutants : notions de base, outils numériques et premiers pas en programmation.',
+  },
+  {
+    id: 'design',
+    icon: 'palette',
+    title: 'Design graphique et communication digitale',
+    description:
+      "Création de supports visuels cohérents pour renforcer une identité et porter un message clair.",
+  },
+]
+
+const iconMap = {
   monitor: Monitor,
   layout: LayoutTemplate,
   graduation: GraduationCap,
@@ -24,7 +54,7 @@ export function Services() {
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {services.map((service, index) => {
-            const Icon = icons[service.icon] ?? Monitor
+            const Icon = iconMap[service.icon] ?? Monitor
             return (
               <Reveal key={service.id} delay={index * 60} className="h-full">
                 <article className="flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition duration-300 hover:-translate-y-1 hover:border-electric/40 hover:shadow-[0_18px_40px_-18px_rgba(59,130,246,0.3)]">

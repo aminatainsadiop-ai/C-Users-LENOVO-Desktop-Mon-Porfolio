@@ -1,26 +1,27 @@
 import { useEffect, useRef, useState } from 'react'
 
-function shouldSkipAnimation() {
-  if (typeof window === 'undefined') return true
-  if (typeof IntersectionObserver === 'undefined') return true
-  if (typeof window.matchMedia !== 'function') return false
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+function prefersReducedMotion() {
+  return (
+    typeof window === 'undefined' ||
+    typeof IntersectionObserver === 'undefined' ||
+    (typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  )
 }
 
 export function Reveal({ children, className = '', delay = 0 }) {
   const ref = useRef(null)
-  const [visible, setVisible] = useState(shouldSkipAnimation)
+  const [isVisible, setIsVisible] = useState(prefersReducedMotion)
 
   useEffect(() => {
-    if (visible) return undefined
-
+    if (isVisible) return
     const node = ref.current
-    if (!node) return undefined
+    if (!node) return
 
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((entry) => entry.isIntersecting)) {
-          setVisible(true)
+          setIsVisible(true)
           observer.disconnect()
         }
       },
@@ -29,16 +30,12 @@ export function Reveal({ children, className = '', delay = 0 }) {
 
     observer.observe(node)
     return () => observer.disconnect()
-  }, [visible])
+  }, [isVisible])
 
   const style = delay ? { transitionDelay: `${delay}ms` } : undefined
 
   return (
-    <div
-      ref={ref}
-      style={style}
-      className={`reveal ${visible ? 'is-visible' : ''} ${className}`}
-    >
+    <div ref={ref} style={style} className={`reveal ${isVisible ? 'is-visible' : ''} ${className}`}>
       {children}
     </div>
   )
